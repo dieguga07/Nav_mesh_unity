@@ -3,20 +3,13 @@ using UnityEngine.AI;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public Transform[] points;  // Puntos de destino
-    private int currentPointIndex = 0;  // Índice del punto actual
-    private NavMeshAgent agent;  // Componente NavMeshAgent
+    public Transform[] points;
+    private int currentPointIndex = 0; 
+    private NavMeshAgent agent; 
 
     void Start()
     {
-        // Obtener el NavMeshAgent
         agent = GetComponent<NavMeshAgent>();
-
-        // Mover al primer punto
-        if (points.Length > 0)
-        {
-            agent.SetDestination(points[currentPointIndex].position);
-        }
     }
 
     void Update()
