@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
             // Verificar si el agente ha llegado al destino
-        if (!agent.pathPending && agent.remainingDistance < 0.5f)
+        if (!agent.pathPending && agent.remainingDistance < 1.5f)
         {
             // Avanzar al siguiente punto
             currentPointIndex = (currentPointIndex + 1) % points.Length;
