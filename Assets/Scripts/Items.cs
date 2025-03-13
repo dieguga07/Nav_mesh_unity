@@ -3,7 +3,9 @@ using UnityEngine;
 [CreateAssetMenu]
 public class Items : ScriptableObject
 {
-    public Sprite sprite;
+    public GameObject weaponPrefab;
     public string denomination;
+    public Rarety rarety;
+    
     
 }

@@ -4,5 +4,5 @@ using UnityEngine;
 [CreateAssetMenu]
 public class RaretyList : ScriptableObject
 {
-    List<Rarety> rarety;
+    public List<Rarety> rarety;
 }
