@@ -30,7 +30,7 @@ public class ChestScript : MonoBehaviour
 
     void OpenChest()
     {
-       Debug.Log("Opening Chest" + itemList.items[0].name);
+       Debug.Log("Opening Chest " + itemList.items[0].name);
     }
 
     private void OnTriggerEnter(Collider other)
