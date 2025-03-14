@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b37152c6dcf8754b8bbd125b8a38b09, type: 3}
   m_Name: Combat Knife
   m_EditorClassIdentifier: 
-  weaponPrefab: {fileID: 0}
+  weaponPrefab: {fileID: 919132149155446097, guid: 39fdca35efd42524ab725e3922e549c7, type: 3}
   denomination: 
   rarety: {fileID: 11400000, guid: 322c211aef10a124c855a47f222072d3, type: 2}

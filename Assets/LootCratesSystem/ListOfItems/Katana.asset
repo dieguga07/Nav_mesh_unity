@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Katana
   m_EditorClassIdentifier: 
   weaponPrefab: {fileID: 919132149155446097, guid: 49cb85fc02d091f47bf29e1b379ab356, type: 3}
-  denomination: Katana
+  denomination: 
   rarety: {fileID: 11400000, guid: 6be61a9531ae75b4a839b76e386117ae, type: 2}
