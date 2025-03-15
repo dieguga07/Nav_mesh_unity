@@ -1,6 +1,5 @@
-using System;
+using System.Collections.Generic;
 using UnityEngine;
-
 public class ChestScript : MonoBehaviour
 {
     [SerializeField] private ItemList itemList;
@@ -15,8 +14,7 @@ public class ChestScript : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-     
-        
+        raretyList.rarety.Sort((a, b) => b.baseProbability.CompareTo(a.baseProbability));
     }
 
     // Update is called once per frame
@@ -30,7 +28,43 @@ public class ChestScript : MonoBehaviour
 
     void OpenChest()
     {
-       Debug.Log("Opening Chest " + itemList.items[0].name);
+        
+        float probability_num = Random.Range(1, 101);
+        Debug.Log(probability_num);
+        
+        Rarety rarety_selected = null;
+        float accumulatedProbability = 0f;
+        
+        foreach (var rarety in raretyList.rarety)
+        {
+            accumulatedProbability += rarety.baseProbability;
+            
+            if (probability_num <= accumulatedProbability)
+            { 
+                rarety_selected = rarety;
+                break; 
+            }
+        }
+        
+        List<Items> filteredItems = new List<Items>();
+        // List<Item> itemsFiltrados = new List<Item>();
+
+        foreach (var item in itemList.items)
+        {
+            if(item.rarety == rarety_selected)
+            { 
+                filteredItems.Add(item);
+            }
+        }
+
+        Items selectedItem = filteredItems[Random.Range(0, filteredItems.Count)];
+        
+        
+        Debug.Log("Opening Chest... " + selectedItem.name);
+        
+        Vector3 spawnPosition = new Vector3(-0.455f, 1, 0.728f);
+        Instantiate(selectedItem.weaponPrefab, spawnPosition, Quaternion.identity);
+
     }
 
     private void OnTriggerEnter(Collider other)
