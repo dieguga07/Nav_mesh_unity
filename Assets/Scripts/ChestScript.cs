@@ -7,7 +7,7 @@ public class ChestScript : MonoBehaviour
     
     
     private bool onRange = false;
-    
+    private GameObject weapon;
     
     
     
@@ -47,8 +47,7 @@ public class ChestScript : MonoBehaviour
         }
         
         List<Items> filteredItems = new List<Items>();
-        // List<Item> itemsFiltrados = new List<Item>();
-
+        
         foreach (var item in itemList.items)
         {
             if(item.rarety == rarety_selected)
@@ -56,14 +55,19 @@ public class ChestScript : MonoBehaviour
                 filteredItems.Add(item);
             }
         }
-
+        
+       
         Items selectedItem = filteredItems[Random.Range(0, filteredItems.Count)];
         
         
         Debug.Log("Opening Chest... " + selectedItem.name);
         
-        Vector3 spawnPosition = new Vector3(-0.455f, 1, 0.728f);
-        Instantiate(selectedItem.weaponPrefab, spawnPosition, Quaternion.identity);
+        Vector3 spawnPosition = new Vector3(1.843f, 1f, -0.594f);
+        
+        Destroy(weapon);
+        
+        weapon = Instantiate(selectedItem.weaponPrefab, spawnPosition, Quaternion.identity);
+        
 
     }
 
