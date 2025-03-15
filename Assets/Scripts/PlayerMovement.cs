@@ -4,10 +4,12 @@ using UnityEngine.AI;
 public class PlayerMovement : MonoBehaviour
 {
     private NavMeshAgent agent; 
-
+    private Animator animator; // Referencia al Animator
+    
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -25,6 +27,17 @@ public class PlayerMovement : MonoBehaviour
                 // Establecer la nueva posici�n de destino para el agente de navegaci�n
                 agent.SetDestination(hit.point);
             }
+        }
+        
+        float speed = agent.velocity.magnitude;
+        
+        if (speed > 0.1f)
+        {
+            animator.SetFloat("speed", speed);
+        }
+        else
+        {
+            animator.SetFloat("speed", 0f);
         }
     }
 }

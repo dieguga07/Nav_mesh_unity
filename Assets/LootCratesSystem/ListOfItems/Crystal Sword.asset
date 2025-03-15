@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b37152c6dcf8754b8bbd125b8a38b09, type: 3}
   m_Name: Crystal Sword
   m_EditorClassIdentifier: 
-  weaponPrefab: {fileID: 919132149155446097, guid: c756c90c1ad516a46b426e0f36de28d6, type: 3}
+  weaponPrefab: {fileID: 2306410258830743021, guid: 8c15e76e745faa7489a17e63050689c0, type: 3}
   denomination: 
   rarety: {fileID: 11400000, guid: 15c11520fa8e27844b6800a62582b142, type: 2}

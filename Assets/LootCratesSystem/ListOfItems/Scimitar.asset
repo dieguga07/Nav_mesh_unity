@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b37152c6dcf8754b8bbd125b8a38b09, type: 3}
   m_Name: Scimitar
   m_EditorClassIdentifier: 
-  weaponPrefab: {fileID: 0}
+  weaponPrefab: {fileID: 888394136281794745, guid: 270ac99af83d58a45b9cdcbce5baf4f6, type: 3}
   denomination: 
   rarety: {fileID: 11400000, guid: 5a3e8eb41f3fb5e4d9c5afd8197cc819, type: 2}
