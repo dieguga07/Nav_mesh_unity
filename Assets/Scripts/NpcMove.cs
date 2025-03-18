@@ -14,7 +14,7 @@ public class NpcMove : MonoBehaviour
 
     void Update()
     {
-        // Verificar si el agente ha llegado al destino
+        
         if (!agent.pathPending && agent.remainingDistance < 1.5f)
         {
             currentPointIndex = (currentPointIndex + 1) % points.Length;

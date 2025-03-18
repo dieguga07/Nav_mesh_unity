@@ -7,14 +7,18 @@ public class ChestScript : MonoBehaviour
     
     
     private bool onRange = false;
-    private GameObject weapon;
-    
-    
+    private GameObject chestWeapon;
+    private GameObject handWeapon; 
+    private bool hasWeapon = false;
+    private Transform playerHand;
+    private GameObject player;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        player = GameObject.Find("Player");
         raretyList.rarety.Sort((a, b) => b.baseProbability.CompareTo(a.baseProbability));
+        playerHand = player.transform.Find("Hand");
     }
 
     // Update is called once per frame
@@ -24,24 +28,35 @@ public class ChestScript : MonoBehaviour
         {
             OpenChest();
         }
+        
+        if ( onRange && Input.GetKeyDown(KeyCode.F) )
+        {
+            GetWeapon();
+        }
+        
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            DestroyWeapon();
+        }
+        
     }
 
-    void OpenChest()
+    private void OpenChest()
     {
         
-        float probability_num = Random.Range(1, 101);
-        Debug.Log(probability_num);
+        float probabilityNum = Random.Range(1, 101);
+        // Debug.Log(probability_num);
         
-        Rarety rarety_selected = null;
+        Rarety raretySelected = null;
         float accumulatedProbability = 0f;
         
         foreach (var rarety in raretyList.rarety)
         {
             accumulatedProbability += rarety.baseProbability;
             
-            if (probability_num <= accumulatedProbability)
+            if (probabilityNum <= accumulatedProbability)
             { 
-                rarety_selected = rarety;
+                raretySelected = rarety;
                 break; 
             }
         }
@@ -50,7 +65,7 @@ public class ChestScript : MonoBehaviour
         
         foreach (var item in itemList.items)
         {
-            if(item.rarety == rarety_selected)
+            if(item.rarety == raretySelected)
             { 
                 filteredItems.Add(item);
             }
@@ -59,16 +74,39 @@ public class ChestScript : MonoBehaviour
        
         Items selectedItem = filteredItems[Random.Range(0, filteredItems.Count)];
         
-        
-        Debug.Log("Opening Chest... " + selectedItem.name);
+        // Debug.Log("Opening Chest... " + selectedItem.name);
         
         Vector3 spawnPosition = new Vector3(1.843f, 1f, -0.594f);
         
-        Destroy(weapon);
+        Destroy(chestWeapon);
         
-        weapon = Instantiate(selectedItem.weaponPrefab, spawnPosition, Quaternion.identity);
+        chestWeapon = Instantiate(selectedItem.weaponPrefab, spawnPosition, Quaternion.identity);
         
+        
+    }
 
+    private void GetWeapon()
+    {
+        if (!hasWeapon)
+        {
+            handWeapon = Instantiate(chestWeapon, playerHand.position, playerHand.rotation);
+            handWeapon.transform.SetParent(playerHand);
+            hasWeapon  = true;
+        }
+        else
+        {
+            Destroy(handWeapon);
+            handWeapon = Instantiate(chestWeapon, playerHand.position, playerHand.rotation);
+            handWeapon.transform.SetParent(playerHand);
+        }
+       
+        Destroy(chestWeapon);
+    }
+
+    private void DestroyWeapon()
+    {
+        hasWeapon  = false;
+        Destroy(handWeapon);
     }
 
     private void OnTriggerEnter(Collider other)
