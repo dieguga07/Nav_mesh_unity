@@ -6763,6 +6763,37 @@ MonoBehaviour:
       BarrelClipping: 0.25
       Anamorphism: 0
   BlendHint: 0
+--- !u!1 &1426373611
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1426373612}
+  m_Layer: 0
+  m_Name: Hand
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1426373612
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1426373611}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.311, y: 0.87, z: 0.247}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1489584851}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &1451848128
 Mesh:
   m_ObjectHideFlags: 0
@@ -6978,7 +7009,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 2d31dcfe1d2d63140b93101623d20ff8, type: 3}
       propertyPath: m_Name
-      value: Paladin J Nordstrom
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 8670697777106522171, guid: 2d31dcfe1d2d63140b93101623d20ff8, type: 3}
       propertyPath: m_LocalPosition.y
@@ -6990,6 +7021,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 2d31dcfe1d2d63140b93101623d20ff8, type: 3}
       insertIndex: 0
       addedObject: {fileID: 1390031592}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 2d31dcfe1d2d63140b93101623d20ff8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1426373612}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2d31dcfe1d2d63140b93101623d20ff8, type: 3}
       insertIndex: -1
