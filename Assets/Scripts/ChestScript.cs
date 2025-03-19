@@ -8,8 +8,6 @@ public class ChestScript : MonoBehaviour
     
     private bool onRange = false;
     private GameObject chestWeapon;
-    private GameObject handWeapon; 
-    private bool hasWeapon = false;
     private Transform playerHand;
     private GameObject player;
     
@@ -31,12 +29,8 @@ public class ChestScript : MonoBehaviour
         
         if ( onRange && Input.GetKeyDown(KeyCode.F) )
         {
-            GetWeapon();
-        }
-        
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            DestroyWeapon();
+            // GetWeapon();
+            // player.GetWeapon();
         }
         
     }
@@ -74,8 +68,6 @@ public class ChestScript : MonoBehaviour
        
         Items selectedItem = filteredItems[Random.Range(0, filteredItems.Count)];
         
-        // Debug.Log("Opening Chest... " + selectedItem.name);
-        
         Vector3 spawnPosition = new Vector3(1.843f, 1f, -0.594f);
         
         Destroy(chestWeapon);
@@ -84,31 +76,7 @@ public class ChestScript : MonoBehaviour
         
         
     }
-
-    private void GetWeapon()
-    {
-        if (!hasWeapon)
-        {
-            handWeapon = Instantiate(chestWeapon, playerHand.position, playerHand.rotation);
-            handWeapon.transform.SetParent(playerHand);
-            hasWeapon  = true;
-        }
-        else
-        {
-            Destroy(handWeapon);
-            handWeapon = Instantiate(chestWeapon, playerHand.position, playerHand.rotation);
-            handWeapon.transform.SetParent(playerHand);
-        }
-       
-        Destroy(chestWeapon);
-    }
-
-    private void DestroyWeapon()
-    {
-        hasWeapon  = false;
-        Destroy(handWeapon);
-    }
-
+    
     private void OnTriggerEnter(Collider other)
     {
         onRange = true;
