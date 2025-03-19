@@ -8,7 +8,6 @@ public class ChestScript : MonoBehaviour
     
     private bool onRange = false;
     private GameObject chestWeapon;
-    private Transform playerHand;
     private GameObject player;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -16,7 +15,7 @@ public class ChestScript : MonoBehaviour
     {
         player = GameObject.Find("Player");
         raretyList.rarety.Sort((a, b) => b.baseProbability.CompareTo(a.baseProbability));
-        playerHand = player.transform.Find("Hand");
+        
     }
 
     // Update is called once per frame
@@ -39,7 +38,6 @@ public class ChestScript : MonoBehaviour
     {
         
         float probabilityNum = Random.Range(1, 101);
-        // Debug.Log(probability_num);
         
         Rarety raretySelected = null;
         float accumulatedProbability = 0f;
@@ -64,7 +62,6 @@ public class ChestScript : MonoBehaviour
                 filteredItems.Add(item);
             }
         }
-        
        
         Items selectedItem = filteredItems[Random.Range(0, filteredItems.Count)];
         
@@ -73,7 +70,6 @@ public class ChestScript : MonoBehaviour
         Destroy(chestWeapon);
         
         chestWeapon = Instantiate(selectedItem.weaponPrefab, spawnPosition, Quaternion.identity);
-        
         
     }
     

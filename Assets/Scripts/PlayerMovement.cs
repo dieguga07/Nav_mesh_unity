@@ -35,7 +35,6 @@ public class PlayerMovement : MonoBehaviour
         
         if (speed <= 0f)
         {
-            // animator.SetBool("stopped", agent.isStopped);
             animator.SetBool("stopped", true);
         }
         else
