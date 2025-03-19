@@ -7,13 +7,12 @@ public class ChestScript : MonoBehaviour
     
     
     private bool onRange = false;
-    private GameObject chestWeapon;
-    private GameObject player;
+    public GameObject chestWeapon;
+  
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        player = GameObject.Find("Player");
         raretyList.rarety.Sort((a, b) => b.baseProbability.CompareTo(a.baseProbability));
         
     }
@@ -26,11 +25,7 @@ public class ChestScript : MonoBehaviour
             OpenChest();
         }
         
-        if ( onRange && Input.GetKeyDown(KeyCode.F) )
-        {
-            // GetWeapon();
-            // player.GetWeapon();
-        }
+        
         
     }
 
@@ -66,11 +61,17 @@ public class ChestScript : MonoBehaviour
         Items selectedItem = filteredItems[Random.Range(0, filteredItems.Count)];
         
         Vector3 spawnPosition = new Vector3(1.843f, 1f, -0.594f);
-        
-        Destroy(chestWeapon);
+
+        DestroyChestWeapon();
         
         chestWeapon = Instantiate(selectedItem.weaponPrefab, spawnPosition, Quaternion.identity);
         
+    }
+
+
+    public void DestroyChestWeapon()
+    {
+        Destroy(chestWeapon);
     }
     
     private void OnTriggerEnter(Collider other)

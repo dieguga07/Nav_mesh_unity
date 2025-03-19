@@ -5,23 +5,37 @@ public class PlayerMovement : MonoBehaviour
 {
     private NavMeshAgent agent; 
     private Animator animator;
+    
+    [SerializeField] private Transform playerHand ;
+    
     private bool hasWeapon = false;
     private GameObject playerWeapon;
+    private GameObject handWeapon;
+    private ChestScript chestScript;
+    
+    
     
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
+        
     }
 
     void Update()
     {
         float speed = agent.velocity.magnitude;
         
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.F))
         {
-            DestroyWeapon(playerWeapon);
+            DestroyWeapon();
         }
+
+        if (Input.GetKey(KeyCode.R))
+        {
+            
+        }
+            
         
         if (Input.GetMouseButtonDown(0))
         {
@@ -46,24 +60,26 @@ public class PlayerMovement : MonoBehaviour
         
     }
     
-    private void GetWeapon()
-    {
-        // if (!hasWeapon)
-        // {
-        //     handWeapon = Instantiate(chestWeapon, playerHand.position, playerHand.rotation);
-        //     handWeapon.transform.SetParent(playerHand);
-        //     hasWeapon  = true;
-        // }
-        // else
-        // {
-        //     Destroy(handWeapon);
-        //     handWeapon = Instantiate(chestWeapon, playerHand.position, playerHand.rotation);
-        //     handWeapon.transform.SetParent(playerHand);
-        // }
-        //
-        // Destroy(chestWeapon);
-    }
-    private void DestroyWeapon(GameObject handWeapon)
+    // private void GetWeapon()
+    // {
+    //     chestScript.chestWeapon = playerWeapon;
+    //     if (!hasWeapon)
+    //     {
+    //         
+    //         handWeapon = Instantiate(playerWeapon, playerHand.position, playerHand.rotation);
+    //         handWeapon.transform.SetParent(playerHand);
+    //         hasWeapon  = true;
+    //     }
+    //     else
+    //     {
+    //         Destroy(handWeapon);
+    //         handWeapon = Instantiate(newWeapon, playerHand.position, playerHand.rotation);
+    //         handWeapon.transform.SetParent(playerHand);
+    //     }
+    //
+    //     chestScript.DestroyChestWeapon();
+    // }
+    private void DestroyWeapon()
     {
         hasWeapon  = false;
         Destroy(handWeapon);
