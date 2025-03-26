@@ -8,6 +8,7 @@ public class ChestScript : MonoBehaviour
     
     private bool onRange = false;
     public GameObject chestWeapon;
+    public Items selectedItem;
   
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -58,7 +59,7 @@ public class ChestScript : MonoBehaviour
             }
         }
        
-        Items selectedItem = filteredItems[Random.Range(0, filteredItems.Count)];
+        selectedItem = filteredItems[Random.Range(0, filteredItems.Count)];
         
         Vector3 spawnPosition = new Vector3(1.843f, 1f, -0.594f);
 
@@ -66,6 +67,7 @@ public class ChestScript : MonoBehaviour
         
         chestWeapon = Instantiate(selectedItem.weaponPrefab, spawnPosition, Quaternion.identity);
         
+        Debug.Log(chestWeapon.gameObject);
     }
 
 
@@ -78,6 +80,12 @@ public class ChestScript : MonoBehaviour
     {
         onRange = true;
         Debug.Log(other.gameObject.name + " can open chest");
+        var playerScript = other.gameObject.GetComponent<PlayerMovement>();
+        if (playerScript != null)
+        {
+            playerScript.chestScript = this;
+            Debug.Log("player opens: " + playerScript.chestScript.gameObject.name);
+        }
     }
 
     private void OnTriggerExit(Collider other)

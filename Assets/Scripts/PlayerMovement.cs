@@ -6,12 +6,13 @@ public class PlayerMovement : MonoBehaviour
     private NavMeshAgent agent; 
     private Animator animator;
     
-    [SerializeField] private Transform playerHand ;
+    [SerializeField] private GameObject playerHand ;
     
     private bool hasWeapon = false;
-    private GameObject playerWeapon;
+    private Items playerWeapon;
     private GameObject handWeapon;
-    private ChestScript chestScript;
+    
+    public ChestScript chestScript;
     
     
     
@@ -19,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
-        
+        //chestScript = FindObjectOfType<ChestScript>();   
     }
 
     void Update()
@@ -33,7 +34,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKey(KeyCode.R))
         {
-            
+            GetWeapon();
         }
             
         
@@ -57,28 +58,28 @@ public class PlayerMovement : MonoBehaviour
         }
         
         
-        
     }
     
-    // private void GetWeapon()
-    // {
-    //     chestScript.chestWeapon = playerWeapon;
-    //     if (!hasWeapon)
-    //     {
-    //         
-    //         handWeapon = Instantiate(playerWeapon, playerHand.position, playerHand.rotation);
-    //         handWeapon.transform.SetParent(playerHand);
-    //         hasWeapon  = true;
-    //     }
-    //     else
-    //     {
-    //         Destroy(handWeapon);
-    //         handWeapon = Instantiate(newWeapon, playerHand.position, playerHand.rotation);
-    //         handWeapon.transform.SetParent(playerHand);
-    //     }
-    //
-    //     chestScript.DestroyChestWeapon();
-    // }
+    private void GetWeapon()
+    {
+         playerWeapon = chestScript.selectedItem;
+         Debug.Log(playerWeapon);
+         
+         if (!hasWeapon)
+         {
+             handWeapon = Instantiate(playerWeapon.weaponPrefab, playerHand.transform.position, playerHand.transform.rotation);
+             handWeapon.transform.SetParent(playerHand.transform);
+             hasWeapon  = true;
+         }
+         else
+         {
+             Destroy(handWeapon);
+             handWeapon = Instantiate(playerWeapon.weaponPrefab, playerHand.transform.position, playerHand.transform.rotation);
+             handWeapon.transform.SetParent(playerHand.transform);
+         }
+    
+         chestScript.DestroyChestWeapon();
+    }
     private void DestroyWeapon()
     {
         hasWeapon  = false;
