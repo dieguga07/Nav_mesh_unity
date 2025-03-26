@@ -20,7 +20,6 @@ public class PlayerMovement : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
-        //chestScript = FindObjectOfType<ChestScript>();   
     }
 
     void Update()
